@@ -2,6 +2,7 @@
 export enum AccountType {
   USER = 'User',
   AGENT = 'Agent',
+  ADMIN = 'Admin',
 }
 
 export interface IUser {

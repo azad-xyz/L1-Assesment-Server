@@ -2,6 +2,8 @@ import { AppError } from '../errors/AppError';
 import catchAsync from '../utils/catchAsync';
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
+import jwt, { JwtPayload } from 'jsonwebtoken';
+import config from '../config';
 
 const auth = () => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
@@ -9,6 +11,19 @@ const auth = () => {
     if (!token) {
       throw new AppError(httpStatus.UNAUTHORIZED, 'unauthorized');
     }
+
+    jwt.verify(
+      token,
+      config.jwt.jwt_access_secret as string,
+      function (err, decoded) {
+        if (err) {
+          throw new AppError(httpStatus.UNAUTHORIZED, 'unauthorized');
+        }
+
+        req.user = decoded as JwtPayload;
+        next();
+      },
+    );
   });
 };
 

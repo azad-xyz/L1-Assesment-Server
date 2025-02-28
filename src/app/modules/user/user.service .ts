@@ -15,8 +15,7 @@ const createUserIntoDB = async (req: any) => {
   }
 
   const hashedPin = await bcrypt.hash(
-    userData.pin,
-    // pinToString,
+    String(userData.pin),
     Number(config.bcrypt_salt_rounds),
   );
 

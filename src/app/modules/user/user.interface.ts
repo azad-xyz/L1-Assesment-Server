@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export enum AccountType {
   USER = 'User',
   AGENT = 'Agent',
@@ -11,4 +12,5 @@ export interface IUser {
   accountType: AccountType;
   nid: number;
   balance: number;
+  isDeleted: boolean;
 }

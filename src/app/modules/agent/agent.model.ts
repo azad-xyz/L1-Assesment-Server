@@ -1,7 +1,8 @@
 import { model, Schema } from 'mongoose';
-import { AccountType, IUser } from './user.interface';
+import { IAgent } from './agent.interface';
+import { AccountType } from '../user/user.interface';
 
-const userSchema = new Schema<IUser>(
+const agentSchema = new Schema<IAgent>(
   {
     name: { type: String, required: true },
     pin: { type: String, required: true },
@@ -9,16 +10,17 @@ const userSchema = new Schema<IUser>(
     email: { type: String, required: true, unique: true },
     accountType: {
       type: String,
-      enum: [AccountType.USER],
+      enum: [AccountType.AGENT],
       required: true,
     },
     nid: { type: Number, required: true, unique: true },
-    balance: { type: Number, default: 40 },
+    balance: { type: Number, default: 10000 },
     isDeleted: { type: Boolean, default: false },
+    isApproved: { type: Boolean, default: false },
   },
   {
     timestamps: true,
   },
 );
 
-export const User = model<IUser>('User', userSchema);
+export const Agent = model<IAgent>('Agent', agentSchema);

@@ -15,6 +15,8 @@ const userSchema = new Schema<IUser>(
     nid: { type: Number, required: true, unique: true },
     balance: { type: Number, default: 40 },
     isDeleted: { type: Boolean, default: false },
+    isApproved: { type: Boolean, default: true },
+    isLoggedIn: { type: Boolean, default: false },
   },
   {
     timestamps: true,

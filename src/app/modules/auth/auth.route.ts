@@ -15,4 +15,6 @@ router.post('/register', (req, res, next) => {
   return UserControllers.createUser(req, res, next);
 });
 
+router.post('/logout', AuthControllers.logOut);
+
 export const AuthRoutes = router;

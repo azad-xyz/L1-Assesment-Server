@@ -14,4 +14,6 @@ export interface IUser {
   nid: number;
   balance: number;
   isDeleted: boolean;
+  isApproved: boolean;
+  isLoggedIn: boolean;
 }
